@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Liste des Joueurs</h5>
+
+      <table class="table table-striped">
+        <tr>
+          <th>Numéro</th><th>Nom</th><th>Prix</th><th>Date de naissance</th><th>Équipe</th>
+          @if (authService.isAdmin()) {
+            <th colspan="2">Actions</th>
+          }
+</tr>
+
+        @for (joueur of joueurs; track $index) {
+          <tr>
+            <td>{{ joueur.numerojoueur }}</td>
+            <td>{{ joueur.nomjoueur }}</td>
+            <td>{{ joueur.prixjoueur }}</td>
+            <td>{{ joueur.datedenaissance | date:'dd/MM/yyyy' }}</td>
+            <td>{{ joueur.equipe?.nomEquipe  }}</td>
+            @if (authService.isAdmin()) {
+                <td><button class="btn btn-danger" (click)="supprimerJoueur(joueur)">Supprimer</button></td>
+                <td><a class="btn btn-success" [routerLink]="['/updateJoueur', joueur.numerojoueur]">Modifier</a></td>
+              }
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6">Aucun joueur trouvé !</td>
+          </tr>
+        }
+      </table>
+    </div>
+  </div>
+</div>

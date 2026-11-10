@@ -1,0 +1,24 @@
+.blue-navbar {
+    background-color: #0d6efd;
+    padding: 12px 20px;
+}
+
+.blue-navbar .navbar-brand,
+.blue-navbar .nav-link {
+    color: white;
+}
+
+.blue-navbar .nav-link:hover,
+.blue-navbar .navbar-brand:hover {
+    color: #dbeafe;
+}
+
+.blue-navbar .dropdown-menu {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.blue-navbar .dropdown-item:hover {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}

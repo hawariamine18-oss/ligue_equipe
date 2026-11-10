@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Equipes</label>
+    <select class="form-control form-control-lg" id="idEquipe" name="idEquipe"
+            [(ngModel)]="idEquipe" (change)="onChange()">
+      @for (e of equipes; track e.idEquipe) {
+        <option [value]="e.idEquipe">{{ e.nomEquipe }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Numéro</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Date de naissance</th>
+            <th>Equipe</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (joueur of joueurs; track joueur.numerojoueur) {
+            <tr>
+              <td>{{ joueur.numerojoueur }}</td>
+              <td>{{ joueur.nomjoueur }}</td>
+              <td>{{ joueur.prixjoueur }}</td>
+              <td>{{ joueur.datedenaissance | date:'dd/MM/yyyy' }}</td>
+              @if (joueur.equipe) {
+                <td>{{ joueur.equipe.nomEquipe }}</td>
+              } @else {
+                <td>PAS D'EQUIPE</td>
+              }
+            </tr>
+          } @empty {
+            <tr><td colspan="5">Aucun joueur trouvé !</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
