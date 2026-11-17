@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4 mt-3">
+    <app-update-equipe
+      [equipe]="updatedEquipe"
+      [ajout]="ajout"
+      (equipeUpdated)="equipeUpdated($event)">
+    </app-update-equipe>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Id</th><th>Nom Equipe</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          @for (eq of equipes; track eq.idEquipe) {
+            <tr>
+              <td>{{ eq.idEquipe }}</td>
+              <td>{{ eq.nomEquipe }}</td>
+              <td><button class="btn btn-success" (click)="updateEquipe(eq)">Editer</button></td>
+            </tr>
+          } @empty {
+            <tr><td colspan="3">Aucune équipe trouvée !</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

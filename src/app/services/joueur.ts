@@ -16,9 +16,9 @@ export class JoueurService {
     ];
 
     this.joueurs = [
-      { numerojoueur: 11, nomjoueur: 'youssef', prixjoueur: 3000, datedenaissance: new Date('1985-01-10'), equipe: this.equipes[0] },
-      { numerojoueur: 12, nomjoueur: 'mouhamed', prixjoueur: 2500, datedenaissance: new Date('1990-12-12'), equipe: this.equipes[1] },
-      { numerojoueur: 13, nomjoueur: 'hamza', prixjoueur: 1000, datedenaissance: new Date('1995-12-05'), equipe: this.equipes[2] },
+      { numerojoueur: 11, nomjoueur: 'youssef', prixjoueur: 900, datedenaissance: new Date('1985-01-10'), equipe: this.equipes[0] },
+      { numerojoueur: 12, nomjoueur: 'bilel', prixjoueur: 500, datedenaissance: new Date('1990-12-12'), equipe: this.equipes[1] },
+      { numerojoueur: 13, nomjoueur: 'sabri', prixjoueur: 400, datedenaissance: new Date('1995-12-05'), equipe: this.equipes[2] },
     ];
   }
 
@@ -44,17 +44,17 @@ export class JoueurService {
   }
 
   updateJoueur(ancienNumero: number, j: Joueur): boolean {
-    const doublon = this.joueurs.some(
-      (x) => x.numerojoueur == j.numerojoueur && x.numerojoueur != ancienNumero
-    );
-    if (doublon) return false;
+  const doublon = this.joueurs.some(
+    (x) => x.numerojoueur == j.numerojoueur && x.numerojoueur != ancienNumero
+  );
+  if (doublon) return false;
 
-    const index = this.joueurs.findIndex((x) => x.numerojoueur == ancienNumero);
-    if (index > -1) this.joueurs[index] = j;
+  const index = this.joueurs.findIndex((x) => x.numerojoueur == ancienNumero);
+  if (index > -1) this.joueurs[index] = j;
 
-    this.trierJoueurs();
-    return true;
-  }
+  this.trierJoueurs();
+  return true;
+}
 
   listerEquipes(): Equipe[] {
     return this.equipes;
@@ -71,5 +71,17 @@ export class JoueurService {
   rechercherParNom(nom: string): Observable<Joueur[]> {
     return of(this.joueurs.filter((j) =>
       j.nomjoueur?.toLowerCase().includes(nom.toLowerCase())));
+
+
   }
+
+  ajouterEquipe(e: Equipe) {
+  const maxId = this.equipes.reduce((m, x) => Math.max(m, x.idEquipe), 0);
+  this.equipes.push({ idEquipe: maxId + 1, nomEquipe: e.nomEquipe });
+}
+
+  updateEquipe(e: Equipe) {
+  const equipe = this.equipes.find((x) => x.idEquipe == e.idEquipe);
+  if (equipe) equipe.nomEquipe = e.nomEquipe;
+}
 }

@@ -6,6 +6,7 @@ import { RechercheParEquipe } from './recherche-par-equipe/recherche-par-equipe'
 import { Login } from './login/login';
 import { Forbidden } from './forbidden/forbidden';
 import { joueurGuard } from './guards/joueur-guard';
+import { ListeEquipes } from './liste-equipe/liste-equipe';
 
 export const routes: Routes = [
   { path: 'joueurs', component: Joueurs },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'app-forbidden', component: Forbidden },
   { path: '', redirectTo: 'joueurs', pathMatch: 'full' },
+  { path: 'listeEquipes', component: ListeEquipes },
 ];
